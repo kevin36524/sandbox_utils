@@ -86,6 +86,10 @@ case $OPERATOR in
         echo "Setting up git integration..."
         gh auth setup-git
 
+        echo "Setting up git user..."
+        git config --global user.name "Sandbox"
+        git config --global user.email "sandbox@e2b.dev"
+        
         echo "Successfully authenticated and configured GitHub CLI"
         ;;
 
