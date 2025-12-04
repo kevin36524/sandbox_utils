@@ -38,7 +38,7 @@ case $OPERATOR in
 
         BRANCH_NAME=$1
         echo "Fetching branch: $BRANCH_NAME"
-        git fetch --depth 1 origin "$BRANCH_NAME"
+        git fetch --depth 1 origin "$BRANCH_NAME":"$BRANCH_NAME"
 
         echo "Switching to branch: $BRANCH_NAME"
         git checkout "$BRANCH_NAME"
