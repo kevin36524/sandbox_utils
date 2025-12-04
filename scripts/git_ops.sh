@@ -67,7 +67,7 @@ case $OPERATOR in
         git commit -am "$COMMIT_MESSAGE"
 
         echo "Pushing to origin/$BRANCH_NAME..."
-        git push origin "$BRANCH_NAME"
+        git push -f origin "$BRANCH_NAME"
 
         echo "Successfully committed and pushed to $BRANCH_NAME"
         ;;
@@ -89,7 +89,7 @@ case $OPERATOR in
         echo "Setting up git user..."
         git config --global user.name "Sandbox"
         git config --global user.email "sandbox@e2b.dev"
-        
+
         echo "Successfully authenticated and configured GitHub CLI"
         ;;
 
