@@ -1,0 +1,15 @@
+import { Template } from 'e2b'
+
+export const template = Template()
+  .fromImage('e2bdev/code-interpreter:latest')
+  .setUser('root')
+  .setWorkdir('/')
+  .runCmd('apt-get update && apt-get install -y git curl build-essential && rm -rf /var/lib/apt/lists/*')
+  .runCmd('curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && apt-get install -y nodejs')
+  .setWorkdir('/home/user')
+  .runCmd('git clone -b joke https://github.com/kevin36524/hack-skeleton-app.git app')
+  .setWorkdir('/home/user/app')
+  .runCmd('npm install')
+  .setUser('user')
+  .setUser('user')
+  .setWorkdir('/home/user')
