@@ -11,11 +11,13 @@ usage() {
     echo "Operators:"
     echo "  fetchAndSwitch <branch_name>              - Fetch and checkout a specific branch"
     echo "  commitAndPush <branch_name> <message>     - Rename branch, add all changes, commit, and push"
+    echo "  setupGh <token>                           - Authenticate GitHub CLI with token and setup git"
     echo ""
     echo "Examples:"
     echo "  $0 fetchAndSwitch main"
     echo "  $0 fetchAndSwitch feature/new-feature"
     echo "  $0 commitAndPush feature/my-feature \"Add new feature\""
+    echo "  $0 setupGh ghp_xxxxxxxxxxxx"
     exit 1
 }
 
@@ -68,6 +70,23 @@ case $OPERATOR in
         git push origin "$BRANCH_NAME"
 
         echo "Successfully committed and pushed to $BRANCH_NAME"
+        ;;
+
+    setupGh)
+        if [ $# -lt 1 ]; then
+            echo "Error: setupGh requires a GitHub token"
+            usage
+        fi
+
+        TOKEN=$1
+
+        echo "Authenticating GitHub CLI with token..."
+        echo "$TOKEN" | gh auth login --with-token
+
+        echo "Setting up git integration..."
+        gh auth setup-git
+
+        echo "Successfully authenticated and configured GitHub CLI"
         ;;
 
     *)
