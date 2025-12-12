@@ -1,12 +1,12 @@
 import { Template, defaultBuildLogger } from 'e2b'
-import { template } from './template-mail'
+import { mailTemplate } from './template-mail'
 
 async function main() {
-  await Template.build(template, {
+  await Template.build(mailTemplate, {
     alias: 'app-with-mail-mastra',
     onBuildLogs: defaultBuildLogger(),
     cpuCount: 2,
-    memoryMB: 2048
+    memoryMB: 4096
   });
 }
 

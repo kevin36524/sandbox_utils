@@ -1,6 +1,6 @@
 import { Template } from 'e2b'
 
-export const template = Template()
+export const mailTemplate = Template()
   .fromImage('e2bdev/code-interpreter:latest')
   .setUser('root')
   .setWorkdir('/')
@@ -9,7 +9,7 @@ export const template = Template()
   .runCmd('curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && apt-get install -y nodejs')
   .runCmd('npm install -g pnpm')
   .setWorkdir('/home/user')
-  .runCmd('echo v1')
+  .runCmd('echo v6')
   .runCmd('git clone -b mail --depth 1 https://github.com/kevin36524/hack-skeleton-app.git app')
   .runCmd('git clone -b main --depth 1 https://github.com/kevin36524/sandbox_utils.git sandbox_utils')
   .setWorkdir('/home/user/app')
