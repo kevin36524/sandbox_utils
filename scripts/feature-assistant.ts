@@ -79,6 +79,7 @@ async function createFeatureImplementationAgent(
 
     for await (const message of query({
       prompt,
+      model: config.model,
       options: queryOptions
     })) {
       // Handle different message types
@@ -249,7 +250,7 @@ OPTIONS:
   --scope <small|medium|large>
                             Estimated scope of the feature (default: medium)
   --files <path1,path2>     Comma-separated list of target files/areas
-  --model <model>           AI model to use (default: claude-sonnet-4-20250514)
+  --model <model>           AI model to use (default: claude-haiku-4-5-20251001)
                             Options: claude-haiku-4-5-20251001, claude-sonnet-4-20250514, claude-opus-4-1
   --max-iterations <num>    Maximum iterations for the agent (default: 10)
   --session-id <id>         Resume a previous session with the given session ID
