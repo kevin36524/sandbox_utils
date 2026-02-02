@@ -14,6 +14,10 @@ if (!process.env.ANTHROPIC_API_KEY) {
   console.log("ANTHROPIC_API_KEY is set");
 }
 
+if (process.env.ANTHROPIC_BASE_URL) {
+  console.log("ANTHROPIC_BASE_URL is set:", process.env.ANTHROPIC_BASE_URL);
+}
+
 interface FeatureRequest {
   description: string;
   context?: string;
@@ -58,6 +62,7 @@ async function createFeatureImplementationAgent(
       abortController,
       settingSources: ['project', 'local'],
       maxTurns: config.maxIterations,
+      model: config.model,
       allowedTools: [
         'Read',
         'Write',
@@ -70,7 +75,8 @@ async function createFeatureImplementationAgent(
         'Skill',
         'SlashCommand',
         'Task'
-      ]
+      ],
+      ...(process.env.ANTHROPIC_BASE_URL && { apiBaseUrl: process.env.ANTHROPIC_BASE_URL })
     };
 
     if (request.sessionId) {
@@ -79,7 +85,6 @@ async function createFeatureImplementationAgent(
 
     for await (const message of query({
       prompt,
-      model: config.model,
       options: queryOptions
     })) {
       // Handle different message types
