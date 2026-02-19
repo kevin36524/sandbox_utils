@@ -6,8 +6,8 @@ async function main() {
   await Template.build(mailTemplate, {
     alias: 'app-with-gmail-mastra',
     onBuildLogs: defaultBuildLogger(),
-    cpuCount: 2,
-    memoryMB: 4096
+    cpuCount: 4,
+    memoryMB: 8192
   });
 }
 
